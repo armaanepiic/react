@@ -1,38 +1,43 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function Form() {
-  const [inputs, setInputs] = useState([
-    {
-      id: 1,
-      label: "input",
-    },
-  ]);
-  function handleAddInput() {
-    const nextId = inputs[inputs.length - 1].id;
-    setInputs(
-      //   inputs.concat({
-      //     id: nextId,
-      //     label: "input",
-      //   })
-      [
-        ...inputs,
-        {
-          id: nextId,
-          label: "input",
-        },
-      ]
-    );
+  const [status, setStatus] = useState("typing");
+  const [text, setText] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus("sending");
+    await sendMessage(text);
+    setStatus("sent");
   }
+
+  if (status === 'sent') {
+    return <h1>Thanks for feedback!</h1>
+  }
+
   return (
-    <div>
-      {inputs.map((input) => (
-        <div key={input.id} style={{ marginBottom: "5px" }}>
-          <input type="text" label={input.label} />
-        </div>
-      ))}
-      <div style={{ marginTop: "20px" }} onClick={handleAddInput}>
-        <button>Add Input</button>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <p>How was your stay at The Prancing Pony?</p>
+      <textarea
+        disabled={status === 'sending'}
+        value={text}
+        onChange={e => setText(e.target.value)}
+      />
+      <br />
+      <button
+        disabled={status === 'sending'}
+        type="submit"
+      >
+        Send
+      </button>
+      {status === 'sending' && <p>Sending...</p>}
+    </form>
   );
+}
+
+// Pretend to send a message.
+function sendMessage() {
+  return new Promise(resolve => {
+    setTimeout(resolve, 2000);
+  });
 }
