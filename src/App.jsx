@@ -1,8 +1,12 @@
+import Form from "./components/Form";
+import Pointer from "./components/Pointer";
+
 export default function App(){
   
     return (
         <>
-          <h1>React + Tailwind</h1>
+          {/* <Pointer /> */}
+          <Form />
         </>
     );
 }
