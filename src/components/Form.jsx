@@ -1,38 +1,34 @@
 import { useState } from "react";
 
 export default function Form() {
-  const [inputs, setInputs] = useState([
-    {
-      id: 1,
-      label: "input",
-    },
-  ]);
-  function handleAddInput() {
-    const nextId = inputs[inputs.length - 1].id;
-    setInputs(
-      //   inputs.concat({
-      //     id: nextId,
-      //     label: "input",
-      //   })
-      [
-        ...inputs,
-        {
-          id: nextId,
-          label: "input",
-        },
-      ]
-    );
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  // derived state
+  const fullName = `${firstName} ${lastName}`;
+
+  function handleFirstNameChange(e) {
+    setFirstName(e.target.value);
   }
+
+  function handleLastNameChange(e) {
+    setLastName(e.target.value);
+  }
+
   return (
-    <div>
-      {inputs.map((input) => (
-        <div key={input.id} style={{ marginBottom: "5px" }}>
-          <input type="text" label={input.label} />
-        </div>
-      ))}
-      <div style={{ marginTop: "20px" }} onClick={handleAddInput}>
-        <button>Add Input</button>
-      </div>
-    </div>
+    <>
+      <h2>Let's check you in</h2>
+      <label>
+        First name: <input value={firstName} onChange={handleFirstNameChange} />
+      </label>
+      <br />
+      <br />
+      <label>
+        Last name: <input value={lastName} onChange={handleLastNameChange} />
+      </label>
+      <p>
+        Your ticket will be issued to: <b>{fullName}</b>
+      </p>
+    </>
   );
 }
