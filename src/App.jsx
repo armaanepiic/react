@@ -1,24 +1,25 @@
+function Button({ onSmash, children }) {
+  return (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        // console.dir(e);
+        onSmash();
+      }}
+    >{children}
+    </button>
+  );
+}
+
 export default function App() {
   return (
     <div
       onClick={() => {
-        alert("Clicked the parents div!");
+        console.log("You clicked on the toolbar!");
       }}
     >
-      <button
-        onClick={() => {
-          alert("Playing movie");
-        }}
-      >
-        Play movie
-      </button>
-      <button
-        onClick={() => {
-          alert("Image uploadig");
-        }}
-      >
-        Upload Image
-      </button>
+      <Button onSmash={() => console.log("Playing!")}>Play Movie</Button>
+      <Button onSmash={() => console.log("Uploading!")}>Upload Image</Button>
     </div>
   );
 }
