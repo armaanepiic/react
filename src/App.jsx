@@ -1,20 +1,18 @@
-function AlertButton({ message, children }) {
-  return (
-    <button
-      onClick={() => {
-        alert(message);
-      }}
-    >
-      {children}
-    </button>
-  );
+function Button ({onSmash, children}) {
+  return <button onClick={onSmash}>{children}</button>
+}
+
+function PlayButton({ movieName }) {
+  function handlePlayClick() {
+    alert(`Playing ${movieName}`);
+  }
+  return <Button onSmash={handlePlayClick}> Play {movieName} </Button>;
 }
 
 export default function App() {
   return (
     <>
-      <AlertButton message={"playing"}>Play movie</AlertButton>
-      <AlertButton message={"Uploading"}>Upload image</AlertButton>
+      <PlayButton movieName="Avengers" />
     </>
   );
 }
