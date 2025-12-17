@@ -1,8 +1,13 @@
-export default function App(){
-  
-    return (
-        <>
-          <h1>React + Tailwind</h1>
-        </>
-    );
+export default function App() {
+  function handleYes() {
+    console.log("Yes Clicked");
+  }
+  return (
+    <div>
+      <button onClick={handleYes}>yes</button>
+      <button onClick={() => {
+        console.log("No Clicked");
+      }}>no</button>
+    </div>
+  );
 }
