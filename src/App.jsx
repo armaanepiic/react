@@ -1,13 +1,20 @@
-export default function App() {
-  function handleYes() {
-    console.log("Yes Clicked");
-  }
+function AlertButton({ message, children }) {
   return (
-    <div>
-      <button onClick={handleYes}>yes</button>
-      <button onClick={() => {
-        console.log("No Clicked");
-      }}>no</button>
-    </div>
+    <button
+      onClick={() => {
+        alert(message);
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
+export default function App() {
+  return (
+    <>
+      <AlertButton message={"playing"}>Play movie</AlertButton>
+      <AlertButton message={"Uploading"}>Upload image</AlertButton>
+    </>
   );
 }
