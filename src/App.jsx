@@ -1,10 +1,11 @@
+import Avatar from "./components/Avatar";
+import ListItems from "./components/ListItems";
+import PackingList from "./components/PackingList";
+
 export default function App() {
   return (
-    <form onSubmit={(e) => {
-      e.preventDefault();
-    }}>
-      <input />
-      <button>Send</button>
-    </form>
+    <div>
+      <ListItems />
+    </div>
   );
 }
