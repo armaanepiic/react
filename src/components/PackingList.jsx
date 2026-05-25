@@ -1,13 +1,7 @@
 function Item({ name, isPacked }) {
   return (
-    // <li className="item">
-    //   {name}
-    //   {isPacked ? "✅" : null}
-    // </li>
     <li>
-        {/* {isPacked ? name + "✅" : name} */}
-        {name}
-        {isPacked && "✅"}
+      {name} {isPacked && "✅"}
     </li>
   );
 }
@@ -24,4 +18,3 @@ export default function PackingList() {
     </section>
   );
 }
-// ✅
